@@ -35,9 +35,13 @@ public class LoginTest {
     
     @Test
     public void testaLogin(){
-        WebElement nome = driver.findElement(By.tagName("Log in"));
-        nome.click();
-        
+        WebElement login = driver.findElement(By.id("download-button"));
+        login.click();
+        WebElement email = driver.findElement(By.name("email"));
+        email.sendKeys("teacher@gmail.com");
+        WebElement senha = driver.findElement(By.name("password"));
+        senha.sendKeys("pass");
+        email.submit();
     }
     
     
