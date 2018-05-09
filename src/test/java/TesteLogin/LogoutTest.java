@@ -29,7 +29,8 @@ public class LogoutTest {
     
     @BeforeClass
     public static void configura() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/home/douglas/Downloads/chromedriver");
         driver = (WebDriver) new ChromeDriver();
         
         
@@ -38,9 +39,9 @@ public class LogoutTest {
         WebElement login = driver.findElement(By.id("download-button"));
         login.click();
         WebElement email = driver.findElement(By.name("email"));
-        email.sendKeys("teacher@gmail.com");
+        email.sendKeys("nickzation@gmail.com");
         WebElement senha = driver.findElement(By.name("password"));
-        senha.sendKeys("pass");
+        senha.sendKeys("Mm99454391");
         email.submit();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }

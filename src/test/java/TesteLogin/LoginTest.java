@@ -29,10 +29,8 @@ public class LoginTest {
     public static void configura() {
         System.setProperty("webdriver.chrome.driver", "/home/douglas/Downloads/chromedriver");
         driver = (WebDriver) new ChromeDriver();
-
         
         driver.get("https://atlantis.isti.cnr.it:5000/");
-
     }
 
     @Test
