@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: TesteLogin.LogoutTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.615 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 86.996 sec
+>>>>>>> 4fe05f462f74af9c6ae51e7a9eb5874ade046c12

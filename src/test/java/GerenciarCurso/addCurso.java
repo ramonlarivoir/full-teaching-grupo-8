@@ -5,6 +5,7 @@
  */
 package GerenciarCurso;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -26,18 +27,21 @@ public class addCurso {
         driver = (WebDriver) new ChromeDriver();
 
         driver.get("https://atlantis.isti.cnr.it:5000/");
+        
+        
+        WebElement login = driver.findElement(By.id("download-button"));
+        login.click();
+        WebElement email = driver.findElement(By.name("email"));
+        email.sendKeys("nickzation@gmail.com");
+        WebElement senha = driver.findElement(By.name("password"));
+        senha.sendKeys("Mm99454391");
+        email.submit();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
     }
 
     @Test
     public void addCourse() {
-        WebElement login = driver.findElement(By.id("download-button"));
-        login.click();
-        WebElement email = driver.findElement(By.name("email"));
-        email.sendKeys("teacher@gmail.com");
-        WebElement senha = driver.findElement(By.name("password"));
-        senha.sendKeys("pass");
-        email.submit();
         WebElement addcourse = driver.findElement(By.id("submit-post-course"));
         addcourse.click();
         WebElement nome = driver.findElement(By.id("input-post-course-name"));

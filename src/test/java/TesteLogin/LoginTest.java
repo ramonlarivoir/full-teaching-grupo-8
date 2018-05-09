@@ -33,10 +33,8 @@ public class LoginTest {
         options.addArguments("start-maximized");
         options.addArguments("disable-infobars");
         driver = (WebDriver) new ChromeDriver();
-
         
         driver.get("https://atlantis.isti.cnr.it:5000/");
-
     }
 
     @Test
