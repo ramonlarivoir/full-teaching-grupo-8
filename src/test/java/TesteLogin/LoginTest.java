@@ -1,3 +1,5 @@
+package TesteLogin;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -42,7 +44,8 @@ public class LoginTest {
         WebElement senha = driver.findElement(By.name("password"));
         senha.sendKeys("pass");
         email.submit();
+        
+        
     }
-    
     
 }
