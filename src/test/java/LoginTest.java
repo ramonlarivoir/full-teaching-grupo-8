@@ -31,6 +31,7 @@ public class LoginTest {
         driver.get("https://atlantis.isti.cnr.it:5000/");
 
     }
+
 //
 //    @Test
 //    public void testaLogin() {
@@ -72,6 +73,7 @@ public class LoginTest {
 //        configuracoes.click();
 //    }
 
+
     @Test
     public void goToDropDown() {
         WebElement login = driver.findElement(By.id("download-button"));
@@ -86,4 +88,5 @@ public class LoginTest {
         WebElement configuracoes = driver.findElement(By.id("arrow-drop-down"));
         configuracoes.click();
     }
+ 
 }
