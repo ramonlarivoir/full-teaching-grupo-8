@@ -17,6 +17,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -30,6 +32,9 @@ public class LogoutTest {
     @BeforeClass
     public static void configura() {
         System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        options.addArguments("disable-infobars");
         driver = (WebDriver) new ChromeDriver();
         
         
@@ -38,11 +43,13 @@ public class LogoutTest {
         WebElement login = driver.findElement(By.id("download-button"));
         login.click();
         WebElement email = driver.findElement(By.name("email"));
-        email.sendKeys("teacher@gmail.com");
+        email.sendKeys("student1@gmail.com");
         WebElement senha = driver.findElement(By.name("password"));
         senha.sendKeys("pass");
         email.submit();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("arrow-drop-down")));
     }
     
     @Test
