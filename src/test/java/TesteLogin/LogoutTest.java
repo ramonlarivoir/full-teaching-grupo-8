@@ -31,15 +31,12 @@ public class LogoutTest {
     
     @BeforeClass
     public static void configura() {
-<<<<<<< HEAD
         System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "/home/douglas/Downloads/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("disable-infobars");
-=======
         //System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", "/home/douglas/Downloads/chromedriver");
->>>>>>> 4fe05f462f74af9c6ae51e7a9eb5874ade046c12
         driver = (WebDriver) new ChromeDriver();
         
         
@@ -48,11 +45,7 @@ public class LogoutTest {
         WebElement login = driver.findElement(By.id("download-button"));
         login.click();
         WebElement email = driver.findElement(By.name("email"));
-<<<<<<< HEAD
         email.sendKeys("student1@gmail.com");
-=======
-        email.sendKeys("nickzation@gmail.com");
->>>>>>> 4fe05f462f74af9c6ae51e7a9eb5874ade046c12
         WebElement senha = driver.findElement(By.name("password"));
         senha.sendKeys("Mm99454391");
         email.submit();
