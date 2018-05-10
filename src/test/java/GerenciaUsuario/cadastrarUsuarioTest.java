@@ -18,6 +18,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -53,20 +54,38 @@ public class cadastrarUsuarioTest {
         WebElement pass = driver.findElement(By.name("password"));
         WebElement confirmPass = driver.findElement(By.name("confirmPassword"));
         
-        email.sendKeys("ramon@gmail.com");
+        email.sendKeys("ramon7@gmail.com");
         nome.sendKeys("Ramon");
         pass.sendKeys("Ramon123");
         confirmPass.sendKeys("Ramon123");
         
-        driver.findElement(By.xpath("//*[@id=\"recaptcha-anchor\"]/div[5]")).click();
+        driver.switchTo().frame(driver.findElement(By.tagName("iframe"))).findElement(By.xpath("//*[@id=\"recaptcha-anchor\"]/div[5]")).click();
+        driver.switchTo().defaultContent();
+        
+       // WebDriverWait wait2 = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"sign-up-btn\"]")));
+        driver.findElement(By.xpath("//*[@id=\"sign-up-btn\"]")).click();
+        
+       // WebDriverWait wait3 = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("settings-button")));
+        
+        assertEquals("SETTINGS", driver.findElement(By.id("settings-button")).getText());
+        
+        driver.close();
 
     }
     
-    @Test
-    public void validate() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        
-        driver.findElement(By.id("sign-up-btn")).click();
-        
-    }
+//    @Test
+//    public void validate() {
+//        WebDriverWait wait = new WebDriverWait(driver, 60);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("settings-button")));
+//        
+//        assertEquals("Settings", driver.findElement(By.id("settings-button")).getText());
+//        
+//    }
+    
+//    @Test
+//    public void close() {
+//        driver.close();
+//    }
 }
