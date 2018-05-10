@@ -40,46 +40,68 @@ public class changePasswordTest {
         WebElement login = driver.findElement(By.id("download-button"));
         login.click();
         WebElement email = driver.findElement(By.name("email"));
-        email.sendKeys("student1@gmail.com");
+        email.sendKeys("ramon7@gmail.com");
         WebElement senha = driver.findElement(By.name("password"));
-        senha.sendKeys("Password123");
+        senha.sendKeys("Ramon123");
         email.submit();
         
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("settings-button")));
+        
+        
     }
 
     @Test
-    public void acessaSettings() {
+    public void changePass() {
         WebElement settings = driver.findElement(By.id("settings-button"));
         settings.click();
-    }
-    
-    @Test
-    public void botaoChange() {
+        
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("button-small")));
         driver.findElement(By.className("button-small")).click();
-    }
-    
-    @Test
-    public void changePass() {
+        
         WebElement currentPass = driver.findElement(By.name("inputCurrentPassword"));
         WebElement newPass = driver.findElement(By.name("inputNewPassword"));
         WebElement repeatNewPass = driver.findElement(By.name("inputNewPassword2"));
         
-        currentPass.sendKeys("Password123");
-        newPass.sendKeys("pass");
-        repeatNewPass.sendKeys("pass");
+        currentPass.sendKeys("Ramon123");
+        newPass.sendKeys("Ramon1234");
+        repeatNewPass.sendKeys("Ramon1234");
         
         repeatNewPass.submit();
-    }
-    
-    @Test
-    public void validate(){
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"password-modal\"]/div/div/form/app-error-message/div/h5")));
         
         assertEquals(driver.findElement(By.tagName("h5")).getText(), "Password changed succesfully!");
+        driver.close();
     }
+//    
+//    @Test
+//    public void botaoChange() {
+//        WebDriverWait wait = new WebDriverWait(driver, 30);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("button-small")));
+//        driver.findElement(By.className("button-small")).click();
+//    }
+//    
+//    @Test
+//    public void changePass() {
+//        WebElement currentPass = driver.findElement(By.name("inputCurrentPassword"));
+//        WebElement newPass = driver.findElement(By.name("inputNewPassword"));
+//        WebElement repeatNewPass = driver.findElement(By.name("inputNewPassword2"));
+//        
+//        currentPass.sendKeys("Ramon123");
+//        newPass.sendKeys("Ramon1234");
+//        repeatNewPass.sendKeys("Ramon123");
+//        
+//        repeatNewPass.submit();
+//    }
+//    
+//    @Test
+//    public void validate(){
+//        WebDriverWait wait = new WebDriverWait(driver, 30);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"password-modal\"]/div/div/form/app-error-message/div/h5")));
+//        
+//        assertEquals(driver.findElement(By.tagName("h5")).getText(), "Password changed succesfully!");
+//        driver.close();
+//    }
 }
