@@ -17,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -32,7 +34,7 @@ public class LoginTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("disable-infobars");
-        driver = (WebDriver) new ChromeDriver();
+        driver = (WebDriver) new ChromeDriver(options);
         
         driver.get("https://atlantis.isti.cnr.it:5000/");
     }
@@ -46,6 +48,13 @@ public class LoginTest {
         WebElement senha = driver.findElement(By.name("password"));
         senha.sendKeys("pass");
         email.submit();
+        
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("settings-button")));
+        
+        assertEquals("SETTINGS", driver.findElement(By.id("settings-button")).getText());
+        
+        driver.close();
         
     }
 
