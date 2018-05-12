@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  *
@@ -24,8 +25,11 @@ public class goToSettings {
     @BeforeClass
     public static void configura() {
         //System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", "/home/douglas/Downloads/chromedriver");
-        driver = (WebDriver) new ChromeDriver();
+               System.setProperty("webdriver.gecko.driver", "/ice/Downloads/geckodriver");
+        //ChromeOptions options = new FirefoxOptions();
+        //options.addArguments("start-maximized");
+        //options.addArguments("disable-infobars");
+        driver = (WebDriver) new FirefoxDriver();
 
         driver.get("https://atlantis.isti.cnr.it:5000/");
 
