@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author Ramon Larivoir
  */
-public class addCurso {
+public class deleteCurso {
 
     static WebDriver driver;
     
@@ -56,19 +56,20 @@ public class addCurso {
     }
 
     @Test
-    public void addCourse() {
+    public void deleteCourse() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-course-icon\"]")));
-        driver.findElement(By.xpath("//*[@id=\"add-course-icon\"]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[3]/a/i")));
+        driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[3]/a/i")).click();
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-post-course-name\"]")));
-        WebElement nome = driver.findElement(By.xpath("//*[@id=\"input-post-course-name\"]"));
-        nome.sendKeys("Computação");
-        nome.submit();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"label-delete-checkbox\"]")));
+        driver.findElement(By.xpath("//*[@id=\"label-delete-checkbox\"]")).click();
         
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[@id=\"delete-course-btn\"]")).click();
         
-        assertTrue(driver.getPageSource().contains("Computação"));
+        
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        
+        assertFalse(driver.getPageSource().contains("Computação"));
         
         driver.close();
     }

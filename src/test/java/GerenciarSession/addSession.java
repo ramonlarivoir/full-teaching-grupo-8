@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GerenciarCurso;
+package GerenciarSession;
 
+import GerenciarCurso.*;
 import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
@@ -23,7 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author Ramon Larivoir
  */
-public class addCurso {
+public class addSession {
 
     static WebDriver driver;
     
@@ -52,13 +53,7 @@ public class addCurso {
         
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-course-icon\"]")));
-
-    }
-
-    @Test
-    public void addCourse() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-course-icon\"]")));
+        
         driver.findElement(By.xpath("//*[@id=\"add-course-icon\"]")).click();
         
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-post-course-name\"]")));
@@ -67,8 +62,38 @@ public class addCurso {
         nome.submit();
         
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+    }
+
+    @Test
+    public void addSession() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[2]")));
+        String teste = driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[2]")).getText();
         
-        assertTrue(driver.getPageSource().contains("Computação"));
+        
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"md-tab-label-3-1\"]/div")));
+        driver.findElement(By.xpath("//*[@id=\"md-tab-label-3-1\"]/div")).click();
+        
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-session-icon\"]")));
+        driver.findElement(By.xpath("//*[@id=\"add-session-icon\"]")).click();
+        
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-post-title\"]")));
+        WebElement title = driver.findElement(By.xpath("//*[@id=\"input-post-title\"]"));
+        title.sendKeys("titulo");
+        
+        WebElement descricao = driver.findElement(By.xpath("//*[@id=\"input-post-comment\"]"));
+        descricao.sendKeys("descricao");
+        
+        WebElement data = driver.findElement(By.xpath("//*[@id=\"input-post-date\"]"));
+        data.sendKeys("11052018");
+        
+        WebElement time = driver.findElement(By.xpath("//*[@id=\"input-post-time\"]"));
+        time.sendKeys("1111");
+        time.submit();
+        
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        assertTrue(driver.getPageSource().contains("titulo"));
         
         driver.close();
     }
