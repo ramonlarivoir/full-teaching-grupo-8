@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author Ramon Larivoir
  */
-public class addCurso {
+public class deleteCurso {
 
     static WebDriver driver;
     
@@ -32,12 +33,12 @@ public class addCurso {
         System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
 //        System.setProperty("webdriver.gecko.driver", "/ice/Área de Trabalho/Selenium/geckodriver");
         ChromeOptions options = new ChromeOptions();
+//        FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
         options.addArguments("disable-infobars");
         driver = (WebDriver) new ChromeDriver(options);
 //        driver = (WebDriver) new FirefoxDriver(options);
-        System.setProperty("webdriver.gecko.driver", "/ice/Downloads/geckodriver");        
-//        driver = (WebDriver) new FirefoxDriver();
+
         driver.get("https://atlantis.isti.cnr.it:5000/");
         
         
@@ -55,21 +56,21 @@ public class addCurso {
     }
 
     @Test
-    public void addCourse() {
+    public void deleteCourse() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-course-icon\"]")));
-        driver.findElement(By.xpath("//*[@id=\"add-course-icon\"]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[3]/a/i")));
+        driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[3]/a/i")).click();
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-post-course-name\"]")));
-        WebElement nome = driver.findElement(By.xpath("//*[@id=\"input-post-course-name\"]"));
-        nome.sendKeys("Computação");
-        nome.submit();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"label-delete-checkbox\"]")));
+        driver.findElement(By.xpath("//*[@id=\"label-delete-checkbox\"]")).click();
         
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[@id=\"delete-course-btn\"]")).click();
         
-        assertTrue(driver.getPageSource().contains("Computação"));
+        
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        
+        assertFalse(driver.getPageSource().contains("Computação"));
         
         driver.close();
     }
-
 }
