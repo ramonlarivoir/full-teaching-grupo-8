@@ -31,14 +31,14 @@ public class addSession {
     @BeforeClass
     public static void configura() {
 //        System.setProperty("webdriver.chrome.driver", "/home/douglas/Downloads/chromedriver");
-//        System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "/ice/Área de Trabalho/Selenium/geckodriver");
-//        ChromeOptions options = new ChromeOptions();
-        FirefoxOptions options = new FirefoxOptions();
+        System.setProperty("webdriver.chrome.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/chromedriver.exe");
+//        System.setProperty("webdriver.gecko.driver", "C:/Users/Ramon Larivoir/Desktop/Ramon/Programas/Selenium/geckodriver.exe");
+        ChromeOptions options = new ChromeOptions();
+//        FirefoxOptions options = new FirefoxOptions();
         options.addArguments("start-maximized");
         options.addArguments("disable-infobars");
-//        driver = (WebDriver) new ChromeDriver(options);
-        driver = (WebDriver) new FirefoxDriver(options);
+        driver = (WebDriver) new ChromeDriver(options);
+//        driver = (WebDriver) new FirefoxDriver(options);
 
         driver.get("https://atlantis.isti.cnr.it:5000/");
         
@@ -68,12 +68,14 @@ public class addSession {
     @Test
     public void addSession() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[2]")));
-        String teste = driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[1]/div/div[2]")).getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[2]/div/div[2]")));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.id("inputPostCourseImage")).click();
+        driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[2]/div/div[2]")).click();
         
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"md-tab-label-3-1\"]/div")));
-        driver.findElement(By.xpath("//*[@id=\"md-tab-label-3-1\"]/div")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sessions-tab-icon")));
+        driver.findElement(By.id("sessions-tab-icon")).click();
         
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-session-icon\"]")));
         driver.findElement(By.xpath("//*[@id=\"add-session-icon\"]")).click();
