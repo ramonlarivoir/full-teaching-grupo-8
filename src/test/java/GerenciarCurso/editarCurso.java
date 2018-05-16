@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author Ramon Larivoir
  */
-public class addCurso {
+public class editarCurso {
 
     static WebDriver driver;
     
@@ -42,24 +43,28 @@ public class addCurso {
         email.submit();
         
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-course-icon\"]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app/div/main/app-dashboard/div/div[3]/div/div[1]/ul/li[1]/div/div[3]/a")));
 
     }
 
     @Test
-    public void addCourse() {
+    public void editarCurso() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"add-course-icon\"]")));
-        driver.findElement(By.xpath("//*[@id=\"add-course-icon\"]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app/div/main/app-dashboard/div/div[3]/div/div[1]/ul/li[1]/div/div[3]/a")));
+        driver.findElement(By.xpath("/html/body/app/div/main/app-dashboard/div/div[3]/div/div[1]/ul/li[1]/div/div[3]/a")).click();
         
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-post-course-name\"]")));
-        WebElement nome = driver.findElement(By.xpath("//*[@id=\"input-post-course-name\"]"));
-        nome.sendKeys("Computação");
-        nome.submit();
         
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-put-course-name\"]")));
+        WebElement nome = driver.findElement(By.id("input-put-course-name"));
+        //WebElement nome = driver.findElement(By.xpath("//*[@id=\"input-post-course-name\"]"));
         
-        assertTrue(driver.getPageSource().contains("Computação"));
+        //nome.clear();        
+        nome.sendKeys("aaaaaa");
+        //nomys("aaaaaa");e.sendKeys(Keys.TAB);
+        nome.submit();                
+        
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        
+        assertTrue(driver.getPageSource().contains("aaaaaa"));
         
         driver.close();
     }
