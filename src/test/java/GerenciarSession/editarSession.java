@@ -64,7 +64,7 @@ public class editarSession {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[2]/div/div[2]")));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.id("inputPostCourseImage")).click();
+//        driver.findElement(By.id("inputPostCourseImage")).click();
         driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[2]/div/div[2]")).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sessions-tab-icon")));
