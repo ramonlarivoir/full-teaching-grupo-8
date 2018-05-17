@@ -95,8 +95,8 @@ public class editarSession {
     public void editarSession() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("courses-button")));
-        driver.findElement(By.id("courses-button")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("i.edit-session-icon.material-icons.forum-icon")));
+        driver.findElement(By.cssSelector("i.edit-session-icon.material-icons.forum-icon")).click();
         
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input-put-title")));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -105,9 +105,13 @@ public class editarSession {
         WebElement date = driver.findElement(By.id("input-put-date"));
         WebElement time = driver.findElement(By.id("input-put-time"));
         
+        titulo.clear();
         titulo.sendKeys("titulo2");
+        descricao.clear();
         descricao.sendKeys("descricao2");
+        date.clear();
         date.sendKeys("16052018");
+        time.clear();
         time.sendKeys("2222");
         time.submit();
         
