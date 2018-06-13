@@ -24,7 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * @author Ramon Larivoir
  */
-public class visualizarSession {
+public class excluirSession {
     
     static WebDriver driver;
 
@@ -94,9 +94,17 @@ public class visualizarSession {
     public void visualizarSession() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("session-title")));
-        driver.findElement(By.className("session-title")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("i.edit-session-icon.material-icons.forum-icon")));
+        driver.findElement(By.cssSelector("i.edit-session-icon.material-icons.forum-icon")).click();
         
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("label#label-delete-checkbox")));
+        driver.findElement(By.cssSelector("label#label-delete-checkbox")).click();
+        
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a#delete-session-btn")));
+        driver.findElement(By.cssSelector("a#delete-session-btn")).click();
+                
         driver.close();
         
     }

@@ -67,16 +67,16 @@ public class deleteCurso {
     @Test
     public void deleteCourse() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[2]/div/div[3]/a/i")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"course-list\"]/li[3]/div/div[3]/a/i")));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[2]/div/div[3]/a/i")).click();
+        driver.findElement(By.xpath("//*[@id=\"course-list\"]/li[3]/div/div[3]/a/i")).click();
         
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.findElement(By.id("label-delete-checkbox")).click();
+        driver.findElement(By.cssSelector("label#label-delete-checkbox")).click();
         
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"delete-course-btn\"]")));
-//        driver.findElement(By.xpath("//*[@id=\"delete-course-btn\"]")).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a#delete-course-btn")));
+        driver.findElement(By.cssSelector("a#delete-course-btn")).click();
         
         
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        
